@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <layout>
     <adminhtml_layout_grid>
-        <update handle="formkey"/>
-        <block type="aoe_layout/adminhtml_layout_grid" name="layout_instance.grid" output="toHtml"></block>
+		 <block type="core/text_list" name="root" output="toHtml">
+            <block type="aoe_layout/adminhtml_layout_grid" name="aoe_layout.grid"/>
+        </block>
     </adminhtml_layout_grid>
     <adminhtml_layout_index>
         <reference name="content">

@@ -75,10 +75,8 @@ class Aoe_Layout_Adminhtml_LayoutController extends Mage_Adminhtml_Controller_Ac
      */
     public function gridAction()
     {
-        $this->_title($this->__('System'))->_title($this->__('AOE Layout'));
-
-        $this->_initAction()
-            ->renderLayout();
+		$this->loadLayout();
+        $this->renderLayout();
     }
 
     /**

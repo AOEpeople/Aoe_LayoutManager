@@ -58,18 +58,21 @@ class Aoe_Layout_Block_Adminhtml_Layout_Grid extends Mage_Adminhtml_Block_Widget
             'header'    => Mage::helper('aoe_layout')->__('Area'),
             'align'     => 'left',
             'index'     => 'area',
+			'default'   => 'all areas',
         ));
 
         $this->addColumn('package', array(
             'header'    => Mage::helper('aoe_layout')->__('Package'),
             'align'     => 'left',
             'index'     => 'package',
+			'default'   => 'all packages',
         ));
 
         $this->addColumn('theme', array(
             'header'    => Mage::helper('aoe_layout')->__('Theme'),
             'align'     => 'left',
             'index'     => 'theme',
+			'default'   => 'all themes',
         ));
 
         $this->addColumn('handle', array(
