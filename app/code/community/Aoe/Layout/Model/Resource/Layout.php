@@ -67,16 +67,20 @@ class  Aoe_Layout_Model_Resource_Layout extends Mage_Core_Model_Resource_Db_Abst
             $writeAdapter->delete($layoutUpdateTable, $inCond);
             $this->_deleteLayoutUpdates($removeLayoutUpdateIds);
 
+            $status = (int)$object->getIsActive();
+            $inRange = Mage::app()->getLocale()
+                ->isStoreDateInInterval(null, $object->getLayoutActiveFrom(), $object->getLayoutActiveTo());
 
-            $layoutUpdateIds = $this->_saveLayoutUpdates($object);
+            if ($status && $inRange) {
+                $layoutUpdateIds = $this->_saveLayoutUpdates($object);
 
-            foreach ($layoutUpdateIds as $layoutUpdateId) {
-                $writeAdapter->insert($layoutUpdateTable, array(
-                    'layout_id' => $layoutId,
-                    'layout_update_id' => $layoutUpdateId
-                ));
+                foreach ($layoutUpdateIds as $layoutUpdateId) {
+                    $writeAdapter->insert($layoutUpdateTable, array(
+                        'layout_id' => $layoutId,
+                        'layout_update_id' => $layoutUpdateId
+                    ));
+                }
             }
-
         }
         return parent::_afterSave($object);
     }
@@ -258,5 +262,20 @@ class  Aoe_Layout_Model_Resource_Layout extends Mage_Core_Model_Resource_Db_Abst
             ->where("{$this->getIdFieldName()} = ?", (int)$id);
         $storeIds = $adapter->fetchOne($select);
         return $storeIds ? explode(',', $storeIds) : array();
+    }
+
+    /**
+     * Get layout ids
+     *
+     * @return array
+     */
+    public function getLayoutIds()
+    {
+        $adapter = $this->_getReadAdapter();
+        $select = $adapter->select()
+            ->from($this->getMainTable(), 'layout_id');
+
+        $layoutIds = $adapter->fetchCol($select);
+        return $layoutIds;
     }
 }

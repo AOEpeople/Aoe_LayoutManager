@@ -51,7 +51,7 @@ class Aoe_Layout_Model_Layout extends Mage_Core_Model_Abstract
     /**
      * Invalidate related cache types
      *
-     * @return Mage_Widget_Model_Widget_Instance
+     * @return Aoe_Layout_Model_Layout
      */
     protected function _invalidateCache()
     {
@@ -60,26 +60,39 @@ class Aoe_Layout_Model_Layout extends Mage_Core_Model_Abstract
             $types = $types->asArray();
             Mage::app()->getCacheInstance()->invalidateType(array_keys($types));
         }
+
         return $this;
     }
 
     /**
-     * Invalidate related cache if instance contain layout updates
+     * Clean related cache types
+     *
+     * @return Aoe_Layout_Model_Layout
+     */
+    protected function _cleanCache()
+    {
+        Mage::app()->getCacheInstance()->cleanType('layout');
+        Mage::app()->getCacheInstance()->cleanType('block_html');
+        return $this;
+    }
+
+    /**
+     * Clean related cache if instance contain layout updates
      */
     protected function _afterSave()
     {
         if ($this->hasDataChanges()) {
-            $this->_invalidateCache();
+            $this->_cleanCache();
         }
         return parent::_afterSave();
     }
 
     /**
-     * Invalidate related cache as instance contain layout updates
+     * Clean related cache as instance contain layout updates
      */
     protected function _beforeDelete()
     {
-        $this->_invalidateCache();
+        $this->_cleanCache();
         return parent::_beforeDelete();
     }
 }

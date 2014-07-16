@@ -90,10 +90,23 @@
             </modules>
         </translate>
     </adminhtml>
+    <crontab>
+        <jobs>
+            <aoe_layout_update_enable_disable>
+                <schedule>
+                    <cron_expr>1 0 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>aoe_layout/observer::scheduledLayoutUpdate</model>
+                </run>
+            </aoe_layout_update_enable_disable>
+        </jobs>
+    </crontab>
     <default>
         <aoelayout>
             <general>
                 <enabled>1</enabled>
+                <cron_job_enabled>1</cron_job_enabled>
             </general>
         </aoelayout>
     </default>
