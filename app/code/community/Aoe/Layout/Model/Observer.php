@@ -50,7 +50,6 @@ class Aoe_Layout_Model_Observer
                             ->save();
                     }
                 }
-                $this->_cleanCache();
             } catch (Exception $e) {
                 Mage::logException($e->getMessage());
                 return;
@@ -59,18 +58,6 @@ class Aoe_Layout_Model_Observer
                 return;
             }
         }
-        return;
-    }
-
-    /**
-     * Clean related cache types
-     *
-     * @return Aoe_Layout_Model_Observer
-     */
-    protected function _cleanCache()
-    {
-        Mage::app()->getCacheInstance()->cleanType('layout');
-        Mage::app()->getCacheInstance()->cleanType('block_html');
         return;
     }
 }
