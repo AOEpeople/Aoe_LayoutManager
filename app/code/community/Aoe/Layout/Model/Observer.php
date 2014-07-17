@@ -8,9 +8,6 @@
  */
 class Aoe_Layout_Model_Observer
 {
-    const STATUS_ENABLED    = 1;
-    const STATUS_DISABLED    = 0;
-
     /**
      * Cron job method for layout update
      *
@@ -40,15 +37,11 @@ class Aoe_Layout_Model_Observer
 
                     $inRange = Mage::app()->getLocale()
                         ->isStoreDateInInterval(null, $layoutUpdateInstance->getLayoutActiveFrom(), $layoutUpdateInstance->getLayoutActiveTo());
-                    if ($inRange) {
-                        $layoutUpdateInstance->setIsActive(self::STATUS_ENABLED)
+
+					$status = $inRange ? 1 : 0;
+					$layoutUpdateInstance->setIsActive($status)
                             ->setIsMassupdate(true)
                             ->save();
-                    } else {
-                        $layoutUpdateInstance->setIsActive(self::STATUS_DISABLED)
-                            ->setIsMassupdate(true)
-                            ->save();
-                    }
                 }
             } catch (Exception $e) {
                 Mage::logException($e->getMessage());
