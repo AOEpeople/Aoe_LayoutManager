@@ -33,9 +33,11 @@ class  Aoe_Layout_Model_Resource_Layout extends Mage_Core_Model_Resource_Db_Abst
          * If they are empty we need to convert them into DB
          * type NULL so in DB they will be empty and not some default value
          */
-        foreach (array('layout_active_from', 'layout_active_to') as $field) {
-            $value = !$object->getData($field) ? null : $object->getData($field);
-            $object->setData($field, $this->formatDate($value));
+        foreach (array('layout_active_from', 'layout_active_to') as $dataKey) {
+            $date = $object->getData($dataKey);
+            if (!$date) {
+                $object->setData($dataKey, new Zend_Db_Expr('NULL'));
+            }
         }
 
         return parent::_beforeSave($object);
