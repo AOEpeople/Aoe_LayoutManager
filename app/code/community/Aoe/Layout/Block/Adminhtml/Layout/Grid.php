@@ -16,7 +16,7 @@ class Aoe_Layout_Block_Adminhtml_Layout_Grid extends Mage_Adminhtml_Block_Widget
     {
         parent::__construct();
         $this->setId('layoutGrid');
-        $this->setDefaultSort('layout_id');
+        $this->setDefaultSort('layout_update_id');
         $this->setDefaultDir('desc');
         $this->setSaveParametersInSession(true);
         $this->setUseAjax(true);
@@ -30,7 +30,9 @@ class Aoe_Layout_Block_Adminhtml_Layout_Grid extends Mage_Adminhtml_Block_Widget
     protected function _prepareCollection()
     {
         /* @var $collection Aoe_Layout_Model_Resource_Layout_Collection */
-        $collection = Mage::getModel('aoe_layout/layout')->getCollection();
+        $collection = Mage::getModel('aoe_layout/layout')->getCollection()
+                    ->join(array('link'=>'core/layout_link'), 'link.layout_update_id = main_table.layout_update_id',
+                        array('area','package','theme', 'is_active', 'layout_active_from', 'layout_active_to'));
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
@@ -42,10 +44,10 @@ class Aoe_Layout_Block_Adminhtml_Layout_Grid extends Mage_Adminhtml_Block_Widget
      */
     protected function _prepareColumns()
     {
-        $this->addColumn('layout_id', array(
+        $this->addColumn('layout_update_id', array(
             'header'    => Mage::helper('aoe_layout')->__('ID'),
             'align'     => 'left',
-            'index'     => 'layout_id',
+            'index'     => 'layout_update_id',
         ));
 
         $this->addColumn('title', array(
@@ -58,21 +60,18 @@ class Aoe_Layout_Block_Adminhtml_Layout_Grid extends Mage_Adminhtml_Block_Widget
             'header'    => Mage::helper('aoe_layout')->__('Area'),
             'align'     => 'left',
             'index'     => 'area',
-			'default'   => 'all areas',
         ));
 
         $this->addColumn('package', array(
             'header'    => Mage::helper('aoe_layout')->__('Package'),
             'align'     => 'left',
             'index'     => 'package',
-			'default'   => 'all packages',
         ));
 
         $this->addColumn('theme', array(
             'header'    => Mage::helper('aoe_layout')->__('Theme'),
             'align'     => 'left',
             'index'     => 'theme',
-			'default'   => 'all themes',
         ));
 
         $this->addColumn('handle', array(
@@ -99,7 +98,6 @@ class Aoe_Layout_Block_Adminhtml_Layout_Grid extends Mage_Adminhtml_Block_Widget
             'header'    => Mage::helper('cms')->__('From Date'),
             'index'     => 'layout_active_from',
             'type'      => 'date',
-            'default'   => '--',
             'format' => $dateFormatIso
         ));
 
@@ -107,7 +105,6 @@ class Aoe_Layout_Block_Adminhtml_Layout_Grid extends Mage_Adminhtml_Block_Widget
             'header'    => Mage::helper('cms')->__('To Date'),
             'index'     => 'layout_active_to',
             'type'      => 'date',
-            'default'   => '--',
             'format' => $dateFormatIso
         ));
 
@@ -128,7 +125,7 @@ class Aoe_Layout_Block_Adminhtml_Layout_Grid extends Mage_Adminhtml_Block_Widget
      */
     public function getRowUrl($row)
     {
-        return $this->getUrl('*/*/edit', array('layout_id' => $row->getId()));
+        return $this->getUrl('*/*/edit', array('layout_update_id' => $row->getId()));
     }
 
     /**

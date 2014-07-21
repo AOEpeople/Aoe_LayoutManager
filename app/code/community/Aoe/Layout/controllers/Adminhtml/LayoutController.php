@@ -45,7 +45,7 @@ class Aoe_Layout_Adminhtml_LayoutController extends Mage_Adminhtml_Controller_Ac
 
         /** @var $layoutInstance Aoe_Layout_Model_Resource_Layout */
         $layoutInstance = Mage::getModel('aoe_layout/layout');
-        $layoutId = $this->getRequest()->getParam('layout_id', null);
+        $layoutId = $this->getRequest()->getParam('layout_update_id', null);
 
         if ($layoutId) {
             $layoutInstance->load($layoutId);
@@ -113,6 +113,7 @@ class Aoe_Layout_Adminhtml_LayoutController extends Mage_Adminhtml_Controller_Ac
     public function saveAction()
     {
         if ($data = $this->getRequest()->getPost()) {
+            $data = $this->_filterPostData($data);
             $layoutInstance = $this->_initLayoutInstance();
             if (!$layoutInstance) {
                 $this->_redirect('*/*/');
@@ -121,7 +122,7 @@ class Aoe_Layout_Adminhtml_LayoutController extends Mage_Adminhtml_Controller_Ac
             $layoutInstance->setData($data);
             //validating
             if (!$this->_validatePostData($data)) {
-                $this->_redirect('*/*/edit', array('layout_id' => $layoutInstance->getId(), '_current' => true));
+                $this->_redirect('*/*/edit', array('layout_update_id' => $layoutInstance->getId(), '_current' => true));
                 return;
             }
 
@@ -138,7 +139,7 @@ class Aoe_Layout_Adminhtml_LayoutController extends Mage_Adminhtml_Controller_Ac
                 // check if 'Save and Continue'
                 if ($this->getRequest()->getParam('back', false)) {
                     $this->_redirect('*/*/edit', array(
-                        'layout_id' => $layoutInstance->getId(),
+                        'layout_update_id' => $layoutInstance->getId(),
                         '_current' => true
                     ));
                     return;
@@ -154,7 +155,7 @@ class Aoe_Layout_Adminhtml_LayoutController extends Mage_Adminhtml_Controller_Ac
             }
 
             $this->_getSession()->setFormData($data);
-            $this->_redirect('*/*/edit', array('layout_id' => $this->getRequest()->getParam('layout_id')));
+            $this->_redirect('*/*/edit', array('layout_update_id' => $this->getRequest()->getParam('layout_update_id')));
             return;
         }
         $this->_redirect('*/*/', array('_current' => true));
@@ -189,6 +190,18 @@ class Aoe_Layout_Adminhtml_LayoutController extends Mage_Adminhtml_Controller_Ac
     protected function _isAllowed()
     {
         return Mage::getSingleton('admin/session')->isAllowed('system/aoelayout');
+    }
+
+    /**
+     * Filtering posted data. Converting localized data if needed
+     *
+     * @param array
+     * @return array
+     */
+    protected function _filterPostData($data)
+    {
+        $data = $this->_filterDates($data, array('layout_active_from', 'layout_active_to'));
+        return $data;
     }
 
     /**

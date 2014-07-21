@@ -13,15 +13,17 @@
             </aoe_layout>
             <aoe_layout_resource>
                 <class>Aoe_Layout_Model_Resource</class>
-                <entities>
-                    <layout>
-                        <table>aoe_layout</table>
-                    </layout>
-                    <layout_update>
-                        <table>aoe_layout_update</table>
-                    </layout_update>
-                </entities>
             </aoe_layout_resource>
+            <core>
+                <rewrite>
+                    <layout_update>Aoe_Layout_Model_Layout_Update</layout_update>
+                </rewrite>
+            </core>
+            <core_resource>
+                <rewrite>
+                    <layout>Aoe_Layout_Model_Resource_Layout</layout>
+                </rewrite>
+            </core_resource>
         </models>
         <resources>
             <aoe_layout_setup>
@@ -54,12 +56,6 @@
                 <class>Aoe_Layout_Block</class>
             </aoe_layout>
         </blocks>
-        <layout>
-            <related_cache_types>
-                <block_html/>
-                <layout/>
-            </related_cache_types>
-        </layout>
     </global>
     <admin>
         <routers>
@@ -90,23 +86,10 @@
             </modules>
         </translate>
     </adminhtml>
-    <crontab>
-        <jobs>
-            <aoe_layout_update_enable_disable>
-                <schedule>
-                    <cron_expr>1 0 * * *</cron_expr>
-                </schedule>
-                <run>
-                    <model>aoe_layout/observer::scheduledLayoutUpdate</model>
-                </run>
-            </aoe_layout_update_enable_disable>
-        </jobs>
-    </crontab>
     <default>
         <aoelayout>
             <general>
                 <enabled>1</enabled>
-                <cron_job_enabled>1</cron_job_enabled>
             </general>
         </aoelayout>
     </default>

@@ -16,7 +16,7 @@ class Aoe_Layout_Block_Adminhtml_Layout_Edit extends Mage_Adminhtml_Block_Widget
     protected function _construct()
     {
         parent::_construct();
-        $this->_objectId = 'layout_id';
+        $this->_objectId = 'layout_update_id';
         $this->_blockGroup = 'aoe_layout';
         $this->_controller = 'adminhtml_layout';
 

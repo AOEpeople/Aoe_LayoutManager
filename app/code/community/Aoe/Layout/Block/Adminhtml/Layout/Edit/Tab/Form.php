@@ -91,8 +91,8 @@ class Aoe_Layout_Block_Adminhtml_Layout_Edit_Tab_Form
         );
 
         if ($layoutInstance->getId()) {
-            $fieldset->addField('layout_id', 'hidden', array(
-                'name' => 'layout_id',
+            $fieldset->addField('layout_update_id', 'hidden', array(
+                'name' => 'layout_update_id',
             ));
         }
 
@@ -107,10 +107,10 @@ class Aoe_Layout_Block_Adminhtml_Layout_Edit_Tab_Form
         ));
 
         if (!Mage::app()->isSingleStoreMode()) {
-            $field = $fieldset->addField('store_ids', 'multiselect', array(
-                'name'      => 'store_ids[]',
-                'label'     => Mage::helper('aoe_layout')->__('Assign to Store Views'),
-                'title'     => Mage::helper('aoe_layout')->__('Assign to Store Views'),
+            $field = $fieldset->addField('store_id', 'select', array(
+                'name'      => 'store_id',
+                'label'     => Mage::helper('aoe_layout')->__('Assign to Store View'),
+                'title'     => Mage::helper('aoe_layout')->__('Assign to Store View'),
                 'required'  => true,
                 'values'    => Mage::getSingleton('adminhtml/system_store')->getStoreValuesForForm(false, true),
             ));
@@ -118,17 +118,12 @@ class Aoe_Layout_Block_Adminhtml_Layout_Edit_Tab_Form
             $field->setRenderer($renderer);
         }
 
-        $fieldset->addField('area', 'select', array(
+        $fieldset->addField('area', 'text', array(
             'label'     => Mage::helper('aoe_layout')->__('Area'),
             'title'     => Mage::helper('aoe_layout')->__('Area'),
             'name'      => 'area',
-            'required'  => false,
-            'options'   => array(
-                'frontend' => Mage::helper('aoe_layout')->__('frontend'),
-                'adminhtml' => Mage::helper('aoe_layout')->__('adminhtml'),
-                'install' => Mage::helper('aoe_layout')->__('install'),
-                '' => Mage::helper('aoe_layout')->__('all areas')
-            )
+            'required'  => true,
+            'note' => Mage::helper('aoe_layout')->__('Ex. frontend')
         ));
 
         $fieldset->addField('package', 'text', array(
@@ -136,8 +131,8 @@ class Aoe_Layout_Block_Adminhtml_Layout_Edit_Tab_Form
             'label' => Mage::helper('aoe_layout')->__('Package'),
             'title' => Mage::helper('aoe_layout')->__('Package'),
             'class' => '',
-            'required' => false,
-            'note' => Mage::helper('aoe_layout')->__('Leave blank for "all packages"')
+            'required' => true,
+            'note' => Mage::helper('aoe_layout')->__('Ex. base')
         ));
 
         $fieldset->addField('theme', 'text', array(
@@ -145,8 +140,8 @@ class Aoe_Layout_Block_Adminhtml_Layout_Edit_Tab_Form
             'label' => Mage::helper('aoe_layout')->__('Theme'),
             'title' => Mage::helper('aoe_layout')->__('Theme'),
             'class' => '',
-            'required' => false,
-            'note' => Mage::helper('aoe_layout')->__('Leave blank for "all themes"')
+            'required' => true,
+            'note' => Mage::helper('aoe_layout')->__('Ex. default')
         ));
 
         $fieldset->addField('handle', 'text', array(
@@ -155,6 +150,7 @@ class Aoe_Layout_Block_Adminhtml_Layout_Edit_Tab_Form
             'title' => Mage::helper('aoe_layout')->__('Handle'),
             'class' => '',
             'required' => true,
+            'note' =>  Mage::helper('aoe_layout')->__('Ex. cms_index_index')
         ));
 
         $fieldset->addField('xml', 'textarea', array(
