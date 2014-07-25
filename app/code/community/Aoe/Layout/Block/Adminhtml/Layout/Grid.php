@@ -81,12 +81,12 @@ class Aoe_Layout_Block_Adminhtml_Layout_Grid extends Mage_Adminhtml_Block_Widget
         ));
 
         $this->addColumn('is_active', array(
-            'header'    => Mage::helper('cms')->__('Status'),
+            'header'    => Mage::helper('aoe_layout')->__('Status'),
             'index'     => 'is_active',
             'type'      => 'options',
             'options'   => array(
-                0 => Mage::helper('cms')->__('Disabled'),
-                1 => Mage::helper('cms')->__('Enabled')
+                0 => Mage::helper('aoe_layout')->__('Disabled'),
+                1 => Mage::helper('aoe_layout')->__('Enabled')
             ),
         ));
 
@@ -95,14 +95,14 @@ class Aoe_Layout_Block_Adminhtml_Layout_Grid extends Mage_Adminhtml_Block_Widget
         );
 
         $this->addColumn('layout_active_from', array(
-            'header'    => Mage::helper('cms')->__('From Date'),
+            'header'    => Mage::helper('aoe_layout')->__('From Date'),
             'index'     => 'layout_active_from',
             'type'      => 'date',
             'format' => $dateFormatIso
         ));
 
         $this->addColumn('layout_active_to', array(
-            'header'    => Mage::helper('cms')->__('To Date'),
+            'header'    => Mage::helper('aoe_layout')->__('To Date'),
             'index'     => 'layout_active_to',
             'type'      => 'date',
             'format' => $dateFormatIso
