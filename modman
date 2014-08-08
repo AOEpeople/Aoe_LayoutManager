@@ -1,4 +1,4 @@
 app/etc/modules/*   app/etc/modules/
 app/locale/en_US/*  app/locale/en_US/
-app/code/community/Aoe/Layout/  app/code/local/Aoe/Layout/
+app/code/community/Aoe/Layout/  app/code/community/Aoe/Layout/
 app/design/adminhtml/default/default/layout/aoe_layout/    app/design/adminhtml/default/default/layout/aoe_layout/
