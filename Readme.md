@@ -25,3 +25,33 @@ Install the module, and clear the cache. Once AOE Layout module will be installe
 If Menu is not displaying after installtion then go to System -> Configuration -> GENERAL -> AOE Layout and Enable the module.
 
 Click on AOE Layout Menu to add layout xml
+
+## Example
+
+```
+<reference name="head">
+    <block type="core/text" name="helloworld">
+        <action method="setText"><text><![CDATA[<script type="text/javascript">alert('Hello World')</script>]]></text></action>
+    </block>
+</reference>
+```
+
+## Debug helper
+
+These blocks help you to find out about the layout handles used on a given page (use handle "default" to enable the helper on every page while debugging):
+
+Add this snippet (using Aoe_Layout) to show all handles in use on a given page added to as HTML comment to the head block:
+```
+<reference name="head">
+    <block type="aoe_layout/layoutHandles" name="aoe_layout.debug" />
+</reference>
+```
+
+Or as a visible list to the content area:
+```
+<reference name="content">
+    <block type="aoe_layout/layoutHandles" name="aoe_layout.debug">
+        <action method="setIsVisible"><param>1</param></action>
+    </block>
+</reference>
+```
