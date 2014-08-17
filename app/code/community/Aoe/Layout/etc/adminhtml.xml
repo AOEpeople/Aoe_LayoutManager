@@ -8,7 +8,6 @@
                     <sort_order>35</sort_order>
                     <depends>
                         <module>Aoe_Layout</module>
-                        <config>aoelayout/general/enabled</config>
                     </depends>
                     <action>adminhtml/layout</action>
                 </aoelayout>

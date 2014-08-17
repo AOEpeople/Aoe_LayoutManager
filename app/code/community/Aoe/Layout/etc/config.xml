@@ -86,11 +86,4 @@
             </modules>
         </translate>
     </adminhtml>
-    <default>
-        <aoelayout>
-            <general>
-                <enabled>1</enabled>
-            </general>
-        </aoelayout>
-    </default>
 </config>
