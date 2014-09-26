@@ -1,4 +1,4 @@
-app/etc/modules/Aoe_Layout.xml
-app/locale/en_US/Aoe_Layout.csv
-app/code/community/Aoe/Layout
-app/design/adminhtml/default/default/layout/aoe_layout
+app/etc/modules/Aoe_LayoutManager.xml
+app/locale/en_US/Aoe_LayoutManager.csv
+app/code/community/Aoe/LayoutManager
+app/design/adminhtml/default/default/layout/aoe_layoutmanager

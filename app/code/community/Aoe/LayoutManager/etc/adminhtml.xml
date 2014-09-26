@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <system>
+            <children>
+                <aoelayoutmanager translate="title" module="aoe_layoutmanager">
+                    <title>AOE Layout Manager</title>
+                    <sort_order>35</sort_order>
+                    <action>adminhtml/layout</action>
+                </aoelayoutmanager>
+            </children>
+        </system>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <aoelayoutmanager translate="title" module="aoe_layoutmanager">
+                                <title>AOE Layout Manager</title>
+                                <sort_order>35</sort_order>
+                            </aoelayoutmanager>
+                        </children>
+                    </system>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <aoelayoutmanager translate="title">
+                                        <title>AOE Layout Manager Section</title>
+                                        <sort_order>35</sort_order>
+                                    </aoelayoutmanager>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

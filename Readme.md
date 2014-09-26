@@ -1,8 +1,8 @@
-# AOE Layout
+# AOE Layout Manager
 
 ## Description
 
-This module allows advanced users (with some Magento knowlegde) to add layout xml via records in the Magento backend.
+This module allows advanced users (with some Magento knowledge) to add layout xml via records in the Magento backend.
 
 Author: Manish Jain
 
@@ -10,7 +10,7 @@ Author: Manish Jain
 
 Please remember using the `--recursive` parameter while cloning:
 
-    git clone --recursive https://github.com/AOEpeople/Aoe_Layout.git Aoe_Layout
+    git clone --recursive https://github.com/AOEpeople/Aoe_LayoutManager.git Aoe_LayoutManager
 
 The module comes with a modman configuration file.
 
@@ -21,9 +21,7 @@ something like Javascript for a new service)
 Modify layout for a given time span
 
 ## How it works
-Install the module, and clear the cache. Once AOE Layout module will be installed, menu will be appear in Admin -> System -> AOE Layout.
-If Menu is not displaying after installtion then go to System -> Configuration -> GENERAL -> AOE Layout and Enable the module.
-
+Install the module, and clear the cache. Once AOE Layout Manager module will be installed, menu will be appear in Admin -> System -> AOE Layout Manager.
 Click on AOE Layout Menu to add layout xml
 
 ## Example
@@ -40,17 +38,17 @@ Click on AOE Layout Menu to add layout xml
 
 These blocks help you to find out about the layout handles used on a given page (use handle "default" to enable the helper on every page while debugging):
 
-Add this snippet (using Aoe_Layout) to show all handles in use on a given page added to as HTML comment to the head block:
+Add this snippet (using Aoe_LayoutManager) to show all handles in use on a given page added to as HTML comment to the head block:
 ```
 <reference name="head">
-    <block type="aoe_layout/layoutHandles" name="aoe_layout.debug" />
+    <block type="aoe_layoutManager/layoutHandles" name="aoe_layout_manager.debug" />
 </reference>
 ```
 
 Or as a visible list to the content area:
 ```
 <reference name="content">
-    <block type="aoe_layout/layoutHandles" name="aoe_layout.debug">
+    <block type="aoe_layoutManager/layoutHandles" name="aoe_layout_manager.debug">
         <action method="setIsVisible"><param>1</param></action>
     </block>
 </reference>

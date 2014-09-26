@@ -2,7 +2,7 @@
     "name":"aoepeople/aoe_layoutmanager",
     "type":"magento-module",
     "license":"OSL-3.0",
-    "homepage":"https://github.com/AOEpeople/Aoe_Layout",
+    "homepage":"https://github.com/AOEpeople/Aoe_LayoutManager",
     "description":"Update Layout XML from backend",
     "authors":[
         {
