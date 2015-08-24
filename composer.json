@@ -1,16 +1,19 @@
 {
-    "name":"aoepeople/aoe_layoutmanager",
-    "type":"magento-module",
-    "license":"OSL-3.0",
-    "homepage":"https://github.com/AOEpeople/Aoe_LayoutManager",
-    "description":"Update Layout XML from backend",
-    "authors":[
+    "name": "aoepeople/aoe_layoutmanager",
+    "type": "magento-module",
+    "keywords": [
+        "magento"
+    ],
+    "license": "OSL-3.0",
+    "homepage": "https://github.com/AOEpeople/Aoe_LayoutManager",
+    "description": "Update Layout XML from backend",
+    "authors": [
         {
-            "name":"Manish Jain",
-            "email":"manish.sh.jain@gmail.com"
+            "name": "Manish Jain",
+            "email": "manish.jain@aoe.com"
         }
     ],
-    "require":{
-        "magento-hackathon/magento-composer-installer":"*"
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
     }
 }
